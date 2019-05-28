@@ -1,0 +1,17 @@
+{
+    "name": "cedaesca/url-shortener",
+    "description": "Shorten URL's using your own domain",
+    "type": "library",
+    "authors": [
+        {
+            "name": "César Escudero",
+            "email": "cedaesca@gmail.com"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "cedaesca\\URLShortener\\": "src/"
+        }
+    }
+}
