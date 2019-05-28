@@ -9,11 +9,6 @@ use App\Http\Controllers\Controller;
 
 class UrlShortenerController extends Controller
 {
-    public function create() {
-
-        return view('URLShortener::url.create');
-
-    }
 
     /**
      * Store a new record in the shortenedurls table
