@@ -1,5 +1,5 @@
 {
-    "name": "cedaesca/url-shortener",
+    "name": "cedaesca/urlshortener",
     "description": "Shorten URL's using your own domain",
     "type": "library",
     "authors": [
