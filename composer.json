@@ -2,6 +2,7 @@
     "name": "cedaesca/urlshortener",
     "description": "Shorten URL's using your own domain",
     "type": "library",
+    "license": "MIT",
     "authors": [
         {
             "name": "César Escudero",
