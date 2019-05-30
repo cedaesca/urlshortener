@@ -6,7 +6,8 @@
     "authors": [
         {
             "name": "César Escudero",
-            "email": "cedaesca@gmail.com"
+            "email": "cedaesca@gmail.com",
+            "role": "Developer"
         }
     ],
     "require": {},
