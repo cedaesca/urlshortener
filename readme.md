@@ -37,7 +37,7 @@ Then you'll have access to the `create` and `redirect` methods.
 
 ## Shorten URL's
 
-Use the `create` static method to shorten a given URL. This method receives the request as argument and returns an instance of the model if was successfully created or false if not.
+Use the `create` static method to shorten a given URL. This method receives the request as argument and returns an instance of the model if was successfully created or false if not:
 
 ````php
 URLShortener::create(Request $request);
