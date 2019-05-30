@@ -1,3 +1,5 @@
+[License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)
+
 # URL Shortener
 
 Shorten URL's using your own domain
