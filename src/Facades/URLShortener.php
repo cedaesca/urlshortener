@@ -35,7 +35,7 @@ class URLShortener {
 
         if( $this->length % 2 != 0 ) {
 
-            $extraCharacter = bin2hex( random_bytes(4) );
+            $extraCharacter = bin2hex( random_bytes( 4 ) );
             $extraCharacter = substr( $extraCharacter, -1 );
 
         }
@@ -44,7 +44,7 @@ class URLShortener {
 
             $code = bin2hex( random_bytes( $this->length / 2 ) ) . $extraCharacter;
 
-        } while( $this->checkIfCodeExists('shortlink', $code) );
+        } while( $this->checkIfCodeExists( 'shortlink', $code ) );
 
         return $code;
         
@@ -102,11 +102,15 @@ class URLShortener {
 
     static function create(Request $request) {
 
+        $object = new URLShortener;
+
         $shortenedUrl = ShortenedUrl::create([
-            'shortlink' => $this->generateCode(),
+
+            'shortlink' => $object->generateCode(),
             'target' => $request->target,
             'title' => $request->title,
             'description' => $request->description
+
         ]);
 
         if( $shortenedUrl->id ) {

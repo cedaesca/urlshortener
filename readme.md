@@ -26,23 +26,30 @@ composer require cedaesca/urlshortener
 
 Go to `vendor\cedaesca\urlshortener\src\Facades\URLShortener.php` and change `public $length;` to the lenght that you want. Default value: `4`.
 
-### URLShortener Facade
+## URLShortener Facade
 
 You have to add the URLShortener facade to your controller:
-`use cedaesca\URLShortener\Facades\URLShortener;`
+````php
+use cedaesca\URLShortener\Facades\URLShortener;
+````
 
 Then you'll have access to the `create` and `redirect` methods.
 
-### Shorten URL's
+## Shorten URL's
 
 Use the `create` static method to shorten a given URL. This method receives the request as argument and returns an instance of the model if was successfully created or false if not.
 
-`URLShortener::create(Request $request);`
+````php
+URLShortener::create(Request $request);
+````
 
-### Redirecting users
+## Redirecting users
 
 Use the `redirect`static method to redirect users to the target url's. This method receives the URL code parameter as argument.
 
-`Route::get('/r/{code}', 'UrlShortenerController@redirect')->name('rthis');`
-
-`return URLShortener::redirect($code);`
+````php
+Route::get('/r/{code}', 'UrlShortenerController@redirect')->name('rthis');
+````
+````php
+return URLShortener::redirect($code);
+````
