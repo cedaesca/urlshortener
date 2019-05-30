@@ -20,11 +20,7 @@ Laravel 5.8+ (Not tested in previous versions)
 composer require cedaesca/urlshortener
 ```
 
-2) Run the migrations so we can store our shortened url's.
-
-```
-php artisan migrate
-```
+2) Run the migrations.
 
 ## Customizing the URL's code length
 
