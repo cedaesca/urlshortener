@@ -23,6 +23,6 @@ class URLShortenerServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        $this->loadMigrationsFrom(__DIR__.'/database/Migrations');
     }
 }
