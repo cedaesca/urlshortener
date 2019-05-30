@@ -1,5 +1,5 @@
-<center>![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)
-![PHP: Laravel](https://img.shields.io/badge/License-MIT-green.svg)</center>
+![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)
+![PHP: Laravel](https://img.shields.io/badge/License-MIT-green.svg)
 
 # URL Shortener
 
