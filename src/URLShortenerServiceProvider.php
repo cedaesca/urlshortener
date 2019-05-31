@@ -29,7 +29,7 @@ class URLShortenerServiceProvider extends ServiceProvider
 
         $this->publishes([
             __DIR__.'database/Migrations/' => database_path('/migrations')
-        ]);
+        ], 'migrations');
 
         $this->loadMigrationsFrom(__DIR__.'/database/Migrations');
     }
