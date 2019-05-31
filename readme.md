@@ -23,10 +23,20 @@ composer require cedaesca/urlshortener
 ```
 
 2) Run the migrations.
+````
+php artisan migrate
+````
+
+3) Publish the config file
+````
+php atisan vendor:publish
+````
 
 ## Customizing the URL's code length
 
-Go to `vendor\cedaesca\urlshortener\src\Facades\URLShortener.php` and change `public $length;` to the lenght that you want. Default value: `4`.
+1) Go to the config file located on `config/cedaesca/URLShortener.php`
+
+2) Change the `length` value for that of your preference.
 
 ## URLShortener Facade
 
@@ -55,3 +65,11 @@ Route::get('/r/{code}', 'UrlShortenerController@redirect')->name('rthis');
 ````php
 return URLShortener::redirect($code);
 ````
+
+## Default redirect
+
+If the code given as argument is invalid, the `redirect` method will redirect the user to a default route. Change this from the config file.
+
+1) Go to the config file located on `config/cedaesca/URLShortener.php`
+
+2) Change the `defaultRedirect` value for that of your preference.
