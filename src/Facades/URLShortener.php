@@ -17,13 +17,13 @@ class URLShortener
     {
         $extraCharacter = '';
 
-        if ($this->length % 2 != 0) {
-            $extraCharacter = bin2hex( random_bytes( 4 ) );
-            $extraCharacter = substr( $extraCharacter, -1 );
+        if (config('URLShortener.length') % 2 != 0) {
+            $extraCharacter = bin2hex(random_bytes(4));
+            $extraCharacter = substr($extraCharacter, -1);
         }
 
         do {
-            $code = bin2hex( random_bytes( $this->length / 2 ) ) . $extraCharacter;
+            $code = bin2hex(random_bytes(config('URLShortener.length') / 2)) . $extraCharacter;
         } while ($this->checkIfCodeExists('shortlink', $code));
 
         return $code;        
@@ -44,7 +44,7 @@ class URLShortener
             return redirect($collection->target);
         }
 
-        return redirect($this->defaultRedirect);
+        return redirect(config('URLShortener.defaultRedirect'));
     }
 
      /**

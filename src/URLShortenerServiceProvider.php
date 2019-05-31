@@ -13,7 +13,7 @@ class URLShortenerServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        $this->mergeConfigFrom(__DIR__.'/config/URLShortener.php', 'URLShortener');
     }
 
     /**
@@ -23,6 +23,10 @@ class URLShortenerServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        $this->publishes([
+            __DIR__.'/config/URLShortener.php' => config_path('URLShortener.php'),
+        ]);
+
         $this->loadMigrationsFrom(__DIR__.'/database/Migrations');
     }
 }
