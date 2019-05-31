@@ -24,7 +24,11 @@ class URLShortenerServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->publishes([
-            __DIR__.'/config/URLShortener.php' => config_path('cedaesca'),
+            __DIR__.'/config/URLShortener.php' => config_path('URLShortener.php'),
+        ], 'config');
+
+        $this->publishes([
+            __DIR__.'database/Migrations/' => database_path('/migrations')
         ]);
 
         $this->loadMigrationsFrom(__DIR__.'/database/Migrations');
