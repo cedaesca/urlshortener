@@ -15,5 +15,12 @@
         "psr-4": {
             "cedaesca\\URLShortener\\": "src/"
         }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "cedaesca\\URLShortener\\URLShortenerServiceProvider"
+            ]
+        }
     }
 }
