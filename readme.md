@@ -22,14 +22,14 @@ Laravel 5.8+ (Not tested in previous versions)
 composer require cedaesca/urlshortener
 ```
 
-2) Run the migrations.
+2) Publish the packages files
 ````
-php artisan migrate
+php artisan vendor:publish
 ````
 
-3) Publish the config file
+3) Run the migrations.
 ````
-php atisan vendor:publish
+php artisan migrate
 ````
 
 ## Customizing the URL's code length
