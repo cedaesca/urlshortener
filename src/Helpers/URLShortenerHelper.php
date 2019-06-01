@@ -1,6 +1,6 @@
 <?php
 
-namespace cedaesca\URLShortener\Facades;
+namespace cedaesca\URLShortener\Helpers;
 
 use cedaesca\URLShortener\Models\ShortenedUrl;
 use Illuminate\Http\Request;
@@ -24,7 +24,7 @@ class URLShortener
 
         do {
             $code = bin2hex(random_bytes(config('URLShortener.length') / 2)) . $extraCharacter;
-        } while ($this->checkIfCodeExists('shortlink', $code));
+        } while (ShortenedUrl::where('shortlink', $code)->exists());
 
         return $code;        
     }
@@ -36,44 +36,25 @@ class URLShortener
      * @return object
      */
 
-    static function redirect($code) 
+    public function redirect($code) 
     {
-        $collection = ShortenedUrl::where('shortlink', $code)->first();
+        $record = ShortenedUrl::where('shortlink', $code)->first();
 
-        if (!is_null($collection)) {
-            return redirect($collection->target);
+        if (!is_null($record)) {
+            return redirect($record->target);
         }
 
         return redirect(config('URLShortener.defaultRedirect'));
     }
 
-     /**
-     * Check if there are records for the specified column with the given value
-     *
-     * @param string $type
-     * @param string|int $value
-     * @return boolean
-     */
-
-    public function checkIfCodeExists(string $type, string $value): bool 
-    {
-        $collection = ShortenedUrl::where($type, $value)->first();
-
-        if (!is_null($collection)) {
-            return true;
-        }
-
-        return false;
-    }
-
     /**
      * Create a new shortened URL
      *
-     * @param Illuminate\Http\Request;
+     * @param Illuminate\Http\Request $request;
      * @return cedaesca\URLShortener\Models\ShortenedUrl|boolean;
      */
 
-    public static function create(Request $request) 
+    public function create(Request $request) 
     {
         $object = new URLShortener;
 
@@ -98,7 +79,7 @@ class URLShortener
      * @return cedaesca\URLShortener\Models\ShortenedUrl|boolean;
      */
 
-    public static function update(Request $request) 
+    public function update(Request $request) 
     {
         $shortenedUrl = ShortenedUrl::where('id', $request->id);
         $shortenedUrl->title = $request->title;

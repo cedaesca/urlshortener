@@ -3,6 +3,7 @@
 namespace cedaesca\URLShortener;
 
 use Illuminate\Support\ServiceProvider;
+use cedaesca\URLShortener\Helpers\URLShortenerHelper;
 
 class URLShortenerServiceProvider extends ServiceProvider
 {
@@ -13,6 +14,10 @@ class URLShortenerServiceProvider extends ServiceProvider
      */
     public function register()
     {
+        $this->app->bind('URLShortener', function () {
+            return new URLShortenerHelper;
+        });
+        
         $this->mergeConfigFrom(__DIR__.'/../config/config.php', 'URLShortener');
     }
     

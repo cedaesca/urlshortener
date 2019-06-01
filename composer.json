@@ -20,7 +20,10 @@
         "laravel": {
             "providers": [
                 "cedaesca\\URLShortener\\URLShortenerServiceProvider"
-            ]
+            ],
+            "aliases": {
+                "URLShortener": "cedaesca\\URLShortener\\Facades\\URLShortenerFacade"
+            }
         }
     }
 }
