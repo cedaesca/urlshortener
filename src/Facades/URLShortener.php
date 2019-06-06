@@ -4,7 +4,7 @@ namespace cedaesca\URLShortener\Facades;
 
 use Illuminate\Support\Facades\Facade;
 
-class URLShortenerFacade extends Facade
+class URLShortener extends Facade
 {
     protected static function getFacadeAccessor()
     {

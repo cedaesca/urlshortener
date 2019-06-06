@@ -5,7 +5,7 @@ namespace cedaesca\URLShortener\Helpers;
 use cedaesca\URLShortener\Models\ShortenedUrl;
 use Illuminate\Http\Request;
 
-class URLShortener 
+class URLShortenerHelper
 {
     /**
      * Genearet an unique code that will serve as an URL parameter
@@ -56,7 +56,7 @@ class URLShortener
 
     public function create(Request $request) 
     {
-        $object = new URLShortener;
+        $object = new URLShortenerHelper;
 
         $shortenedUrl = ShortenedUrl::create([
             'shortlink' => $object->generateCode(),
