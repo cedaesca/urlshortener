@@ -22,7 +22,7 @@
                 "cedaesca\\URLShortener\\URLShortenerServiceProvider"
             ],
             "aliases": {
-                "URLShortener": "cedaesca\\URLShortener\\Facades\\URLShortenerFacade"
+                "URLShortener": "cedaesca\\URLShortener\\Facades\\URLShortener"
             }
         }
     }
