@@ -14,7 +14,7 @@ class URLShortenerServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->bind('URLShortener', function () {
+        $this->app->bind('URLShortenerHelper', function () {
             return new URLShortenerHelper;
         });
         
