@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 class URLShortenerHelper
 {
     /**
-     * Genearet an unique code that will serve as an URL parameter
+     * Generate an unique code that will serve as an URL parameter
      *
      * @return string
      */
