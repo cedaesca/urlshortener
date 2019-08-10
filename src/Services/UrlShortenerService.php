@@ -28,13 +28,13 @@ class UrlShortenerService
     {
         $extraCharacter = '';
 
-        if (config('URLShortener.length') % 2 != 0) {
+        if (config('UrlShortener.length') % 2 != 0) {
             $extraCharacter = bin2hex(random_bytes(4));
             $extraCharacter = substr($extraCharacter, -1);
         }
 
         do {
-            $code = bin2hex(random_bytes(config('URLShortener.length') / 2)) . $extraCharacter;
+            $code = bin2hex(random_bytes(config('UrlShortener.length') / 2)) . $extraCharacter;
         } while (ShortenedUrl::where('shortlink', $code)->exists());
 
         return $code;        
@@ -65,7 +65,7 @@ class UrlShortenerService
     /**
      * Return an instance of the shortened url
      * 
-     * @return cedaesca\URLShortener\Models\ShortenedUrl
+     * @return cedaesca\UrlShortener\Models\ShortenedUrl
      */
     public function get()
     {
@@ -88,7 +88,7 @@ class UrlShortenerService
             $this->setShortened('shortlink', $this->request->shortlink);
         }
         
-        $this->target = is_null($this->shortened_url) ? config('URLShortener.default_redirect') 
+        $this->target = is_null($this->shortened_url) ? config('UrlShortener.default_redirect') 
             : $this->shortened_url->target;
     }
 
@@ -112,7 +112,7 @@ class UrlShortenerService
      * Create a new shortened URL
      *
      * @param Illuminate\Http\Request $request;
-     * @return cedaesca\URLShortener\Models\ShortenedUrl|boolean;
+     * @return cedaesca\UrlShortener\Models\ShortenedUrl|boolean;
      */
     public function create(Request $request) 
     {
@@ -131,7 +131,7 @@ class UrlShortenerService
      * Update Shortened URL's title and description
      *
      * @param Illuminate\Http\Request;
-     * @return cedaesca\URLShortener\Models\ShortenedUrl|boolean;
+     * @return cedaesca\UrlShortener\Models\ShortenedUrl|boolean;
      */
     public function update(Request $request) 
     {
@@ -147,8 +147,8 @@ class UrlShortenerService
      * Logs the clicks on every shortened URL's
      *
      * @param Illuminate\Http\Request;
-     * @param cedaesca\URLShortener\Models\ShortenedUrl
-     * @return cedaesca\URLShortener\Models\Visitor|boolean;
+     * @param cedaesca\UrlShortener\Models\ShortenedUrl
+     * @return cedaesca\UrlShortener\Models\Visitor|boolean;
      */
     public function log(Request $request)
     {
