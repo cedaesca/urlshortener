@@ -13,16 +13,16 @@
     "require": {},
     "autoload": {
         "psr-4": {
-            "cedaesca\\URLShortener\\": "src/"
+            "cedaesca\\UrlShortener\\": "src/"
         }
     },
     "extra": {
         "laravel": {
             "providers": [
-                "cedaesca\\URLShortener\\URLShortenerServiceProvider"
+                "cedaesca\\UrlShortener\\UrlShortenerServiceProvider"
             ],
             "aliases": {
-                "URLShortener": "cedaesca\\URLShortener\\Facades\\URLShortener"
+                "UrlShortener": "cedaesca\\UrlShortener\\Facades\\UrlShortener"
             }
         }
     }

@@ -2,7 +2,7 @@
 
 /**
  * @author César Escudero <cedaesca@gmail.com>
- * @package cedaesca\URLShortener
+ * @package cedaesca\UrlShortener
  * @copyright © 2019 César Escudero, all rights reserved worldwide
  */
 

@@ -1,5 +1,11 @@
 <?php
 
+/**
+ * @author César Escudero <cedaesca@gmail.com>
+ * @package cedaesca\UrlShortener
+ * @copyright © 2019 César Escudero, all rights reserved worldwide
+ */
+
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
