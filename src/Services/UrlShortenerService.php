@@ -2,17 +2,17 @@
 
 /**
  * @author César Escudero <cedaesca@gmail.com>
- * @package cedaesca\URLShortener
+ * @package cedaesca\UrlShortener
  * @copyright © 2019 César Escudero, all rights reserved worldwide
  */
 
-namespace cedaesca\URLShortener\Helpers;
+namespace cedaesca\UrlShortener\Services;
 
-use cedaesca\URLShortener\Models\ShortenedUrl;
-use cedaesca\URLShortener\Models\Visitor;
+use cedaesca\UrlShortener\Models\ShortenedUrl;
+use cedaesca\UrlShortener\Models\Visitor;
 use Illuminate\Http\Request;
 
-class URLShortenerHelper
+class UrlShortenerService
 {
     protected $shortened_url;
     protected $visitor;

@@ -1,13 +1,19 @@
 <?php
 
-namespace cedaesca\URLShortener\Facades;
+/**
+ * @author César Escudero <cedaesca@gmail.com>
+ * @package cedaesca\UrlShortener
+ * @copyright © 2019 César Escudero, all rights reserved worldwide
+ */
+
+namespace cedaesca\UrlShortener\Facades;
 
 use Illuminate\Support\Facades\Facade;
 
-class URLShortener extends Facade
+class UrlShortener extends Facade
 {
     protected static function getFacadeAccessor()
     {
-        return 'URLShortenerHelper';
+        return 'UrlShortenerService';
     }
 }

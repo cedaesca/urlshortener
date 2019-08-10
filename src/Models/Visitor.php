@@ -2,11 +2,11 @@
 
 /**
  * @author César Escudero <cedaesca@gmail.com>
- * @package cedaesca\URLShortener
+ * @package cedaesca\UrlShortener
  * @copyright © 2019 César Escudero, all rights reserved worldwide
  */
 
-namespace cedaesca\URLShortener\Models;
+namespace cedaesca\UrlShortener\Models;
 
 use Illuminate\Database\Eloquent\Model;
 

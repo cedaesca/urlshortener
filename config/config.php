@@ -1,6 +1,12 @@
 <?php
 
-namespace cedaesca\URLShortener\config;
+/**
+ * @author César Escudero <cedaesca@gmail.com>
+ * @package cedaesca\UrlShortener
+ * @copyright © 2019 César Escudero, all rights reserved worldwide
+ */
+
+namespace cedaesca\UrlShortener\config;
 
 return [
 
