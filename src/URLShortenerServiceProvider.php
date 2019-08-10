@@ -9,7 +9,7 @@
 namespace cedaesca\UrlShortener;
 
 use Illuminate\Support\ServiceProvider;
-use cedaesca\URLShortener\Services\UrlShortenerService;
+use cedaesca\UrlShortener\Services\UrlShortenerService;
 
 class UrlShortenerServiceProvider extends ServiceProvider
 {
