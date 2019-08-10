@@ -57,13 +57,23 @@ URLShortener::create(Request $request);
 
 ## Redirecting users
 
-Use the `redirect`static method to redirect users to the target url's. This method receives the URL code parameter as argument.
+First off, the redirection route expect a `shortlink` parameter, make sure to name it like that. Later, you can redirect the user to the expected target by returning Laravel's redirect response and giving the returning value of the `target` method as an argument. The `target` method also receives the `\Illuminate\Http\Request` instance.
 
 ````php
 Route::get('/r/{code}', 'UrlShortenerController@redirect')->name('rthis');
 ````
 ````php
-return URLShortener::redirect($code);
+return response(URLShortener::target($request));
+````
+
+## Logging redirected clients
+
+You may want to track some statistics with your shortened URL's. At the moment you can track their user agent, their IP Address and the timestamps. You can decide what to do with that info.
+
+To achieve this, call the log method before the target one in your redirect response. Give the ``\Illuminate\Http\Request` as the argument and now you can leave the `target` argument blank.
+
+````php
+return response(URLShortener::log($request)->target());
 ````
 
 ## Default redirect
@@ -72,4 +82,4 @@ If the code given as argument is invalid, the `redirect` method will redirect th
 
 1) Go to the config file located on `config/cedaesca/URLShortener.php`
 
-2) Change the `defaultRedirect` value for that of your preference.
+2) Change the `default_redirect` value for that of your preference.
