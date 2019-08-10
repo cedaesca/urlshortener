@@ -25,5 +25,5 @@ return [
     |
     */
 
-    'default_redirect' => '/'
+    'default_redirect' => 'https://www.google.com'
 ];

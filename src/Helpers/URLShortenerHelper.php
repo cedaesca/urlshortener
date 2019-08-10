@@ -55,7 +55,7 @@ class URLShortenerHelper
 
         $shortenedUrl = ShortenedUrl::where($column, $value)->first();
         
-        if ($shortenedUrl->id) {
+        if (! is_null($shortenedUrl)) {
             $this->shortened_url = $shortenedUrl;
         }
 
