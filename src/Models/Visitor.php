@@ -9,11 +9,9 @@
 namespace cedaesca\URLShortener\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Http\Request;
 
-class ShortenedUrl extends Model
+class Visitor extends Model
 {
-
     /**
      * Fillable columns for model's mass assignment
      *
@@ -21,10 +19,9 @@ class ShortenedUrl extends Model
      */
     
     protected $fillable = [
-        'shortlink',
-        'target',
-        'title',
-        'description'
+        'agent',
+        'ip',
+        'shortenedurl_id'
     ];
 
     /**
@@ -33,6 +30,5 @@ class ShortenedUrl extends Model
      * @var string
      */
 
-    protected $table = 'shortenedurls';
-    
+    protected $table = 'visitors';
 }

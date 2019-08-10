@@ -1,19 +1,30 @@
 <?php
 
+/**
+ * @author César Escudero <cedaesca@gmail.com>
+ * @package cedaesca\URLShortener
+ * @copyright © 2019 César Escudero, all rights reserved worldwide
+ */
+
 namespace cedaesca\URLShortener\Helpers;
 
 use cedaesca\URLShortener\Models\ShortenedUrl;
+use cedaesca\URLShortener\Models\Visitor;
 use Illuminate\Http\Request;
 
 class URLShortenerHelper
 {
+    protected $shortened_url;
+    protected $visitor;
+    protected $request;
+    protected $target;
+
     /**
-     * Genearet an unique code that will serve as an URL parameter
+     * Generate an unique code that will serve as an URL parameter
      *
      * @return string
      */
-
-    public function generateCode(): string
+    private function generateCode(): string
     {
         $extraCharacter = '';
 
@@ -30,21 +41,71 @@ class URLShortenerHelper
     }
 
     /**
-     * Check if there are records for the specified column with the given value
-     *
-     * @param string $code
-     * @return object
+     * Set the property to the shortened url model
+     * 
+     * @param string $column
+     * @param mixed $value
+     * @return URLShortenerHelper
      */
-
-    public function redirect($code) 
+    public function setShortened($column, $value = null)
     {
-        $record = ShortenedUrl::where('shortlink', $code)->first();
-
-        if (!is_null($record)) {
-            return redirect($record->target);
+        if (is_null($column)) {
+            throw new Exception('Invalid column');
         }
 
-        return redirect(config('URLShortener.defaultRedirect'));
+        $shortenedUrl = ShortenedUrl::where($column, $value)->first();
+        
+        if (! is_null($shortenedUrl)) {
+            $this->shortened_url = $shortenedUrl;
+        }
+
+        return $this;
+    }
+
+    /**
+     * Return an instance of the shortened url
+     * 
+     * @return cedaesca\URLShortener\Models\ShortenedUrl
+     */
+    public function get()
+    {
+        return $this->shortened_url;
+    }
+
+    /**
+     * Check if there are records for the specified column with the given value
+     *
+     * @param \Illuminate\Http\Request $request
+     * @return void
+     */
+    public function setTarget(Request $request)
+    {
+        if (is_null($request)) {
+            throw new Exception('Null request');
+        }
+
+        if (is_null($this->shortened_url)) {
+            $this->setShortened('shortlink', $this->request->shortlink);
+        }
+        
+        $this->target = is_null($this->shortened_url) ? config('URLShortener.default_redirect') 
+            : $this->shortened_url->target;
+    }
+
+    /**
+     * Return the target URL for the given code
+     *
+     * @param mixed \Illuminate\Http\Request|null $request
+     * @return string
+     */
+    public function target(Request $request = null)
+    {
+        if (is_null($this->request)) {
+            $this->setRequest($request);
+        }
+
+        $this->setTarget($this->request);
+        return $this->target;
     }
 
     /**
@@ -53,23 +114,17 @@ class URLShortenerHelper
      * @param Illuminate\Http\Request $request;
      * @return cedaesca\URLShortener\Models\ShortenedUrl|boolean;
      */
-
     public function create(Request $request) 
     {
-        $object = new URLShortenerHelper;
-
-        $shortenedUrl = ShortenedUrl::create([
-            'shortlink' => $object->generateCode(),
+        $data = [
+            'shortlink' => $this->generateCode(),
             'target' => $request->target,
             'title' => $request->title,
             'description' => $request->description
-        ]);
+        ];
 
-        if ($shortenedUrl->id) {
-            return $shortenedUrl;
-        }
-
-        return false;
+        $this->shortened_url = ShortenedUrl::create($data);
+        return $this;
     }
 
     /**
@@ -78,17 +133,56 @@ class URLShortenerHelper
      * @param Illuminate\Http\Request;
      * @return cedaesca\URLShortener\Models\ShortenedUrl|boolean;
      */
-
     public function update(Request $request) 
     {
-        $shortenedUrl = ShortenedUrl::where('id', $request->id);
+        $shortenedUrl = $this->setShortened('id', $request->id)->get();
         $shortenedUrl->title = $request->title;
         $shortenedUrl->description = $request->description;
-        
-        if ($shortenedUrl->save()) {
-            return $shortenedUrl;
-        }
+        $shortenedUrl->save();
+        $this->shortened_url = $shortenedUrl;
+        return $this;
+    }
 
-        return false;
+    /**
+     * Logs the clicks on every shortened URL's
+     *
+     * @param Illuminate\Http\Request;
+     * @param cedaesca\URLShortener\Models\ShortenedUrl
+     * @return cedaesca\URLShortener\Models\Visitor|boolean;
+     */
+    public function log(Request $request)
+    {
+        $this->setRequest($request);
+        $this->setShortened('shortlink', $this->request->shortlink);
+
+        $data = [
+            'agent' => $request->header('User-Agent'),
+            'ip' => $request->ip(),
+            'shortenedurl_id' => $this->shortened_url->id
+        ];
+
+        $this->visitor = Visitor::create($data);
+        return $this;
+    }
+
+    /**
+     * Set the property request
+     * 
+     * @param \Illuminate\Http\Request $request
+     * @return void
+     */
+    public function setRequest(Request $request)
+    {
+        $this->request = $request;
+    }
+
+    /**
+     * Return the request property
+     * 
+     * @return \Illuminate\Http\Request
+     */
+    public function getRequest()
+    {
+        return $this->request;
     }
 }
