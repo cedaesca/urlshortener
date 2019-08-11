@@ -14,9 +14,32 @@ use Illuminate\Http\Request;
 
 class UrlShortenerService
 {
+    /**
+     * Shortened Url Instance
+     * 
+     * @var cedaesca\UrlShortener\Models\ShortenedUrl
+     */
     protected $shortened_url;
+
+    /**
+     * Visitor Instance
+     * 
+     * @var cedaesca\UrlShortener\Models\Visitor
+     */
     protected $visitor;
+
+    /**
+     * Request instance
+     * 
+     * @var \Illuminate\Http\Request
+     */
     protected $request;
+
+    /**
+     * Target URL to which the client will be redirected
+     * 
+     * @var string
+     */
     protected $target;
 
     /**
@@ -45,7 +68,7 @@ class UrlShortenerService
      * 
      * @param string $column
      * @param mixed $value
-     * @return URLShortenerHelper
+     * @return UrlShortenerService
      */
     public function setShortened($column, $value = null)
     {
@@ -112,7 +135,7 @@ class UrlShortenerService
      * Create a new shortened URL
      *
      * @param Illuminate\Http\Request $request;
-     * @return cedaesca\UrlShortener\Models\ShortenedUrl|boolean;
+     * @return UrlShortenerService
      */
     public function create(Request $request) 
     {
@@ -131,7 +154,7 @@ class UrlShortenerService
      * Update Shortened URL's title and description
      *
      * @param Illuminate\Http\Request;
-     * @return cedaesca\UrlShortener\Models\ShortenedUrl|boolean;
+     * @return UrlShortenerService
      */
     public function update(Request $request) 
     {
@@ -148,7 +171,7 @@ class UrlShortenerService
      *
      * @param Illuminate\Http\Request;
      * @param cedaesca\UrlShortener\Models\ShortenedUrl
-     * @return cedaesca\UrlShortener\Models\Visitor|boolean;
+     * @return UrlShortenerService
      */
     public function log(Request $request)
     {
