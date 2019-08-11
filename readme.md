@@ -52,7 +52,7 @@ Then you'll have access to the `create` and `redirect` methods.
 Use the `create` static method to shorten a given URL. This method receives the request as argument and returns an instance of the model if was successfully created or false if not:
 
 ````php
-URLShortener::create(Request $request);
+URLShortener::create($request);
 ````
 
 ## Redirecting users
@@ -63,7 +63,7 @@ First off, the redirection route expect a `shortlink` parameter, make sure to na
 Route::get('/r/{code}', 'UrlShortenerController@redirect')->name('rthis');
 ````
 ````php
-return response(URLShortener::target($request));
+return redirect(URLShortener::target($request));
 ````
 
 ## Logging redirected clients
@@ -73,7 +73,7 @@ You may want to track some statistics with your shortened URL's. At the moment y
 To achieve this, call the log method before the target one in your redirect response. Give the ``\Illuminate\Http\Request` as the argument and now you can leave the `target` argument blank.
 
 ````php
-return response(URLShortener::log($request)->target());
+return redirect(URLShortener::log($request)->target());
 ````
 
 ## Default redirect
