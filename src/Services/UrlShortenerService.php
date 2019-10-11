@@ -56,11 +56,15 @@ class UrlShortenerService
             $extraCharacter = substr($extraCharacter, -1);
         }
 
+        $shortenedUrlSaved = ShortenedUrl::select("shortlink")
+            ->pluck('shortlink')
+            ->toArray();
+
         do {
             $code = bin2hex(random_bytes(config('UrlShortener.length') / 2)) . $extraCharacter;
-        } while (ShortenedUrl::where('shortlink', $code)->exists());
+        } while (in_array($code, $shortenedUrlSaved));
 
-        return $code;        
+        return $code;
     }
 
     /**
