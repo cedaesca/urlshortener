@@ -42,7 +42,7 @@ php artisan migrate
 
 You have to add the URLShortener facade to your controller:
 ````php
-use cedaesca\URLShortener\Facades\URLShortener;
+use cedaesca\UrlShortener\Facades\URLShortener;
 ````
 
 Then you'll have access to the `create` and `redirect` methods.
