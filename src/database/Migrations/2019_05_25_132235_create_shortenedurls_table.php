@@ -21,8 +21,8 @@ class CreateShortenedurlsTable extends Migration
     {
         Schema::create('shortenedurls', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('created_by')->nullable();
-            $table->string('code');
+            $table->foreignId('created_by')->nullable();
+            $table->string('code')->unique();
             $table->string('target');
             $table->string('title')->nullable();
             $table->text('description')->nullable();

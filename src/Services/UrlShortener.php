@@ -66,12 +66,12 @@ class UrlShortener
     /**
      * Stores a new shortened URL
      * 
-     * @return bool
+     * @return \cedaesca\UrlShortener\Models\ShortenedUrl
      */
     public function make(): ShortenedUrl
     {
         return tap(ShortenedUrl::create([
-            'created_by' => $this->creator,
+            'created_by' => $this->creator->id,
             'code' => '_placeholder_',
             'target' => $this->target,
             'title' => $this->title,
