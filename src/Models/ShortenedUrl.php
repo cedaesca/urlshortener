@@ -9,6 +9,7 @@
 namespace cedaesca\UrlShortener\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Hashids\Hashids;
 
 class ShortenedUrl extends Model
 {
@@ -18,10 +19,9 @@ class ShortenedUrl extends Model
      *
      * @var array
      */
-
     protected $fillable = [
         'created_by',
-        'shortlink',
+        'code',
         'target',
         'title',
         'description'
@@ -32,6 +32,17 @@ class ShortenedUrl extends Model
      *
      * @var string
      */
-
     protected $table = 'shortenedurls';
+
+    /**
+     * Hash the ID to generate an unique code
+     * 
+     * @return string
+     */
+    public function generateCode(): string
+    {
+        $hashids = new Hashids();
+
+        return $hashids->encode($this->id);
+    }
 }
