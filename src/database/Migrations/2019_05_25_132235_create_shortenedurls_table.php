@@ -3,7 +3,7 @@
 /**
  * @author César Escudero <cedaesca@gmail.com>
  * @package cedaesca\UrlShortener
- * @copyright © 2019 César Escudero, all rights reserved worldwide
+ * @copyright © 2020 César Escudero, all rights reserved worldwide
  */
 
 use Illuminate\Support\Facades\Schema;
@@ -20,11 +20,9 @@ class CreateShortenedurlsTable extends Migration
     public function up()
     {
         Schema::create('shortenedurls', function (Blueprint $table) {
-            $model = config('');
-
-            $table->bigIncrements('id');
+            $table->id();
             $table->unsignedBigInteger('created_by')->nullable();
-            $table->string('shortlink');
+            $table->string('code');
             $table->string('target');
             $table->string('title')->nullable();
             $table->text('description')->nullable();
