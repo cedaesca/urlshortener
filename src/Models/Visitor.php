@@ -3,7 +3,7 @@
 /**
  * @author César Escudero <cedaesca@gmail.com>
  * @package cedaesca\UrlShortener
- * @copyright © 2019 César Escudero, all rights reserved worldwide
+ * @copyright © 2020 César Escudero, all rights reserved worldwide
  */
 
 namespace cedaesca\UrlShortener\Models;
@@ -17,7 +17,7 @@ class Visitor extends Model
      *
      * @var array
      */
-    
+
     protected $fillable = [
         'agent',
         'ip',

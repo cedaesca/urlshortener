@@ -20,13 +20,16 @@ class CreateShortenedurlsTable extends Migration
     public function up()
     {
         Schema::create('shortenedurls', function (Blueprint $table) {
+            $model = config('');
+
             $table->bigIncrements('id');
+            $table->unsignedBigInteger('created_by')->nullable();
             $table->string('shortlink');
             $table->string('target');
             $table->string('title')->nullable();
             $table->text('description')->nullable();
-            $table->timestamps();
-            $table->softDeletes();
+            $table->timestampsTz();
+            $table->softDeletesTz();
         });
     }
 

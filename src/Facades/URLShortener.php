@@ -14,6 +14,6 @@ class UrlShortener extends Facade
 {
     protected static function getFacadeAccessor()
     {
-        return 'UrlShortenerService';
+        return 'UrlShortener';
     }
 }

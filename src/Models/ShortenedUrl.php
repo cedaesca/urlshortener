@@ -2,8 +2,8 @@
 
 /**
  * @author César Escudero <cedaesca@gmail.com>
- * @package cedaesca\URLShortener
- * @copyright © 2019 César Escudero, all rights reserved worldwide
+ * @package cedaesca\UrlShortener
+ * @copyright © 2020 César Escudero, all rights reserved worldwide
  */
 
 namespace cedaesca\UrlShortener\Models;
@@ -18,8 +18,9 @@ class ShortenedUrl extends Model
      *
      * @var array
      */
-    
+
     protected $fillable = [
+        'created_by',
         'shortlink',
         'target',
         'title',
@@ -33,5 +34,4 @@ class ShortenedUrl extends Model
      */
 
     protected $table = 'shortenedurls';
-    
 }

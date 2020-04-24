@@ -19,7 +19,7 @@ return [
     |
     */
 
-    'length' => 4,
+    'code_length' => 4,
 
     /*
     |--------------------------------------------------------------------------
@@ -31,5 +31,5 @@ return [
     |
     */
 
-    'default_redirect' => 'https://www.google.com'
+    'default_redirect' => 'https://anydomain.example'
 ];

@@ -9,7 +9,7 @@
 namespace cedaesca\UrlShortener;
 
 use Illuminate\Support\ServiceProvider;
-use cedaesca\UrlShortener\Services\UrlShortenerService;
+use cedaesca\UrlShortener\Services\UrlShortener;
 
 class UrlShortenerServiceProvider extends ServiceProvider
 {
@@ -20,13 +20,13 @@ class UrlShortenerServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->bind('UrlShortenerService', function () {
-            return new UrlShortenerService;
+        $this->app->bind('UrlShortener', function () {
+            return new UrlShortener;
         });
-        
-        $this->mergeConfigFrom(__DIR__.'/../config/config.php', 'UrlShortener');
+
+        $this->mergeConfigFrom(__DIR__ . '/../config/config.php', 'UrlShortener');
     }
-    
+
     /**
      * Bootstrap services.
      *
@@ -35,9 +35,9 @@ class UrlShortenerServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->publishes([
-            __DIR__.'/../config/config.php' => config_path('UrlShortener.php'),
+            __DIR__ . '/../config/config.php' => config_path('UrlShortener.php'),
         ], 'config');
 
-        $this->loadMigrationsFrom(__DIR__.'/database/Migrations');
+        $this->loadMigrationsFrom(__DIR__ . '/database/Migrations');
     }
 }

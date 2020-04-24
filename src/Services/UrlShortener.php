@@ -3,7 +3,7 @@
 /**
  * @author César Escudero <cedaesca@gmail.com>
  * @package cedaesca\UrlShortener
- * @copyright © 2019 César Escudero, all rights reserved worldwide
+ * @copyright © 2020 César Escudero, all rights reserved worldwide
  */
 
 namespace cedaesca\UrlShortener\Services;
@@ -12,7 +12,7 @@ use cedaesca\UrlShortener\Models\ShortenedUrl;
 use cedaesca\UrlShortener\Models\Visitor;
 use Illuminate\Http\Request;
 
-class UrlShortenerService
+class UrlShortener
 {
     /**
      * Shortened Url Instance
@@ -60,7 +60,7 @@ class UrlShortenerService
             $code = bin2hex(random_bytes(config('UrlShortener.length') / 2)) . $extraCharacter;
         } while (ShortenedUrl::where('shortlink', $code)->exists());
 
-        return $code;        
+        return $code;
     }
 
     /**
@@ -77,8 +77,8 @@ class UrlShortenerService
         }
 
         $shortenedUrl = ShortenedUrl::where($column, $value)->first();
-        
-        if (! is_null($shortenedUrl)) {
+
+        if (!is_null($shortenedUrl)) {
             $this->shortened_url = $shortenedUrl;
         }
 
@@ -110,8 +110,8 @@ class UrlShortenerService
         if (is_null($this->shortened_url)) {
             $this->setShortened('shortlink', $this->request->shortlink);
         }
-        
-        $this->target = is_null($this->shortened_url) ? config('UrlShortener.default_redirect') 
+
+        $this->target = is_null($this->shortened_url) ? config('UrlShortener.default_redirect')
             : $this->shortened_url->target;
     }
 
@@ -137,7 +137,7 @@ class UrlShortenerService
      * @param Illuminate\Http\Request $request;
      * @return UrlShortenerService
      */
-    public function create(Request $request) 
+    public function create(Request $request)
     {
         $data = [
             'shortlink' => $this->generateCode(),
@@ -156,7 +156,7 @@ class UrlShortenerService
      * @param Illuminate\Http\Request;
      * @return UrlShortenerService
      */
-    public function update(Request $request) 
+    public function update(Request $request)
     {
         $shortenedUrl = $this->setShortened('id', $request->id)->get();
         $shortenedUrl->title = $request->title;
